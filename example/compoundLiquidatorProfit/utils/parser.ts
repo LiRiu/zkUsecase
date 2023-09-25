@@ -12,7 +12,7 @@ export class Pay {
     this.value = value;
   }
 
-    /**
+  /**
    * Creates a Pay object from an Event.
    *
    * @param {Event} event - The Event object to convert.
@@ -26,7 +26,7 @@ export class Pay {
     return new Pay(receipient, cToken, value);
   }
 
-    /**
+  /**
    * Converts the function body to bytes.
    * {receipient} Liquidate Profit is {value}
    *
@@ -34,8 +34,10 @@ export class Pay {
    */
   toBytes(): Bytes {
     let bytes = Bytes.empty();
-    bytes.concat(Bytes.fromHexString(this.receipient.toString()).padStart(32,0));
-    bytes.concat(Bytes.fromHexString(this.value.toString(16)).padStart(32,0));
+    bytes.concat(
+      Bytes.fromHexString(this.receipient.toString()).padStart(32, 0),
+    );
+    bytes.concat(Bytes.fromHexString(this.value.toString(16)).padStart(32, 0));
     return bytes;
   }
 }

@@ -3,7 +3,7 @@ import { Bytes, Event } from "@hyperoracle/zkgraph-lib";
 import { Pay } from "./utils/parser";
 
 /**
- * The idea of analyzing the Liquidator Pay event 
+ * The idea of analyzing the Liquidator Pay event
  * is to find the second Pay event in each Transaction.
  * The value of this Pay event is profit.
  *
@@ -14,7 +14,7 @@ export function handleEvents(events: Event[]): Bytes {
   let resultBytes = Bytes.empty();
 
   for (let i = 0; i <= events.length - 1; i++) {
-    if( i % 2 ) {
+    if (i % 2) {
       const enter = Pay.fromEvent(events[i]);
       resultBytes.concat(enter.toBytes());
     }

@@ -24,7 +24,10 @@ export class Configs {
     "0x35A18000230DA775CAc24873d00Ff85BccdeD550",
     "0x95b4eF2869eBD94BEb4eEE400a99824BF5DC325b",
   ];
-  public decimals: i32[] = [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
+  public decimals: i32[] = [
+    18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
+    18, 18,
+  ];
   public underlyings: string[] = [
     "0xc00e94Cb662C3520282E6f5717214004A7f26888",
     "0x0000000000085d4780B73119b644AE5ecd22b376",
@@ -103,8 +106,7 @@ export class Configs {
   //   0, 0,
   // ];
   public principals: i64[] = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 567107750472589, 0, 0,
-    0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 567107750472589, 0, 0, 0, 0,
   ];
   // alice stake 1 USDC and borrow 0.000628 ETH
   public balanceCaresPairAddress: string[] = [];

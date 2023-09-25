@@ -6,13 +6,17 @@ export class NewCollateralFactor {
   public oldCollateralFactorMantissa: BigInt;
   public newCollateralFactorMantissa: BigInt;
 
-  constructor(cToken: Address, oldCollateralFactorMantissa: BigInt, newCollateralFactorMantissa: BigInt) {
+  constructor(
+    cToken: Address,
+    oldCollateralFactorMantissa: BigInt,
+    newCollateralFactorMantissa: BigInt,
+  ) {
     this.cToken = cToken;
     this.oldCollateralFactorMantissa = oldCollateralFactorMantissa;
     this.newCollateralFactorMantissa = newCollateralFactorMantissa;
   }
 
-    /**
+  /**
    * Creates a NewCollateralFactor object from an Event.
    *
    * @param {Event} event - The Event object to convert.
@@ -23,6 +27,10 @@ export class NewCollateralFactor {
     const oldCollateralFactorMantissa = BigInt.fromBytes(event.topic2);
     const newCollateralFactorMantissa = BigInt.fromBytes(event.topic3);
 
-    return new NewCollateralFactor(cToken, oldCollateralFactorMantissa, newCollateralFactorMantissa);
+    return new NewCollateralFactor(
+      cToken,
+      oldCollateralFactorMantissa,
+      newCollateralFactorMantissa,
+    );
   }
 }

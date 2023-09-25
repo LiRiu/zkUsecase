@@ -25,7 +25,7 @@ export class Sync {
   static fromEvent(
     event: Event,
     token1Decimals: i32,
-    usdcIsToken0: bool
+    usdcIsToken0: bool,
   ): Sync {
     const t1Decimals = BigInt.from(10).pow(token1Decimals);
     const source = changetype<Bytes>(event.data);
@@ -34,13 +34,9 @@ export class Sync {
     let price: BigInt;
 
     if (usdcIsToken0) {
-      price = reserve0
-        .times(t1Decimals)
-        .div(reserve1.times(usdcDecimals));
+      price = reserve0.times(t1Decimals).div(reserve1.times(usdcDecimals));
     } else {
-      price = reserve1
-        .times(usdcDecimals)
-        .div(reserve0.times(t1Decimals));
+      price = reserve1.times(usdcDecimals).div(reserve0.times(t1Decimals));
     }
 
     return new Sync(reserve0, reserve1, price);

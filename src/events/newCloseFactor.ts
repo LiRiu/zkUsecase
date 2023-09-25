@@ -10,7 +10,7 @@ export class NewCloseFactor {
     this.newCloseFactorMantissa = newCloseFactorMantissa;
   }
 
-    /**
+  /**
    * Creates a NewCloseFactor object from an Event.
    *
    * @param {Event} event - The Event object to convert.

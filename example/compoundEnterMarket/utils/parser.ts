@@ -19,8 +19,8 @@ export class Enter {
 
   toBytes(): Bytes {
     let bytes = Bytes.empty();
-    bytes.concat(Bytes.fromHexString(this.borrower.toString()).padStart(32,0));
-    bytes.concat(Bytes.fromHexString(this.cToken.toString()).padStart(32,0));
+    bytes.concat(Bytes.fromHexString(this.borrower.toString()).padStart(32, 0));
+    bytes.concat(Bytes.fromHexString(this.cToken.toString()).padStart(32, 0));
     return bytes;
   }
 }
