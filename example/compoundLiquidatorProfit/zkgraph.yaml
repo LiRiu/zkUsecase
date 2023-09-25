@@ -1,0 +1,21 @@
+specVersion: 0.0.2
+description: Compound Liquidator Demo
+repository: https://github.com/hyperoracle/zkgraph
+dataSources:
+  - kind: ethereum/contract
+    network: mainnet
+    source:
+      address: '0xb61c66a4D83Da8E04F40ca844c0c4b508ca81Fa3'
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: ./mapping.ts
+      eventHandlers:
+        - event: 'Pay(address, address, address, uint256)'
+          handler: handleEvents
+dataDestinations:
+  - kind: ethereum/contract
+    network: sepolia
+    destination:
+      address: '0x0000000000000000000000000000000000000000'

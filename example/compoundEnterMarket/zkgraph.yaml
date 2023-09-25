@@ -1,0 +1,21 @@
+specVersion: 0.0.2
+description: zkAutomation for Compound New Borrower
+repository: https://github.com/hyperoracle/zkgraph
+dataSources:
+  - kind: ethereum/contract
+    network: mainnet
+    source:
+      address: '0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B'
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: ./mapping.ts
+      eventHandlers:
+        - event: 'MarketEntered(address, address)'
+          handler: handleEvents
+dataDestinations:
+  - kind: ethereum/contract
+    network: sepolia
+    destination:
+      address: '0x0000000000000000000000000000000000000000'
