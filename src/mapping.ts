@@ -103,8 +103,8 @@ export function handleEvents(events: Event[]): Bytes {
   const resultIsValid = hasBalanceEvent && hasPrincipalEvent ? 1 : 0;
   let resultBytes = Bytes.fromI32(resultIsValid);
   const resultInt = totalValue <= totalPrincipal ? 1 : 0;
-  console.log(totalValue.toString());
-  console.log(totalPrincipal.toString());
+  // console.log(totalValue.toString());
+  // console.log(totalPrincipal.toString());
 
   resultBytes = Bytes.fromByteArray(resultBytes.concat(Bytes.fromI32(resultInt)));
   return resultBytes;
