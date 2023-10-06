@@ -1,7 +1,6 @@
-import { BigInt } from "@hyperoracle/zkgraph-lib";
+import { BigInt, Bytes, Event } from "@hyperoracle/zkgraph-lib";
 
 export class Configs {
-  public userAddress: string = "";
   public marketAddresses: string[] = [
     "0x70e36f6BF80a52b3B46b3aF8e106CC0ed743E8e4",
     "0x12392F67bdf24faE0AF363c24aC620a2f67DAd86",
@@ -99,6 +98,10 @@ export class Configs {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000000000000000000, 0,
     0, 0,
   ];
+  // public principals: i64[] = [
+  //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 628000000000000, 0, 0,
+  //   0, 0,
+  // ];
   public principals: i64[] = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 567107750472589, 0, 0,
     0, 0,
@@ -141,26 +144,5 @@ export class Configs {
     if (!this.pairAddresses.includes(address)) return BigInt.zero();
     let index = this.pairAddresses.indexOf(address);
     return BigInt.fromI64(this.principals[index]);
-  }
-
-  public getBalanceByMarket(marketAddresses: string): BigInt {
-    if (!this.marketAddresses.includes(marketAddresses)) return BigInt.zero();
-    let index = this.marketAddresses.indexOf(marketAddresses);
-    return BigInt.fromI64(this.balances[index]);
-  }
-  public setBalanceByMarket(marketAddresses: string, balance: BigInt): void {
-    if (!this.marketAddresses.includes(marketAddresses)) return;
-    let index = this.marketAddresses.indexOf(marketAddresses);
-    this.balances[index] = balance.toI64();
-  }
-  public getPrincipalByMarket(marketAddresses: string): BigInt {
-    if (!this.marketAddresses.includes(marketAddresses)) return BigInt.zero();
-    let index = this.marketAddresses.indexOf(marketAddresses);
-    return BigInt.fromI64(this.principals[index]);
-  }
-  public setPrincipalByMarket(marketAddresses: string, principal: BigInt): void {
-    if (!this.marketAddresses.includes(marketAddresses)) return;
-    let index = this.marketAddresses.indexOf(marketAddresses);
-    this.principals[index] = principal.toI64();
   }
 }

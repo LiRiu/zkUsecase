@@ -14,14 +14,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -33,14 +25,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -54,14 +38,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -73,14 +49,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -94,14 +62,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -113,14 +73,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -134,14 +86,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -154,14 +98,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -173,14 +109,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
 
   - kind: ethereum/contract
@@ -195,14 +123,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -214,14 +134,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -235,14 +147,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -254,14 +158,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -275,14 +171,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -294,14 +182,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
@@ -315,14 +195,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -335,14 +207,6 @@ dataSources:
       eventHandlers:
         - event: "Sync(uint112,uint112)"
           handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
-          handler: handleEvents
   - kind: ethereum/contract
     network: mainnet
     source:
@@ -354,14 +218,6 @@ dataSources:
       file: ./mapping.ts
       eventHandlers:
         - event: "Sync(uint112,uint112)"
-          handler: handleEvents
-        - event: "Mint(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "Borrow(address,uint256,uint256,uint256)"
-          handler: handleEvents
-        - event: "Redeem(address,uint256,uint256)"
-          handler: handleEvents
-        - event: "RepayBorrow(address,address,uint256,uint256,uint256)"
           handler: handleEvents
   - kind: ethereum/contract
     network: mainnet

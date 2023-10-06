@@ -1,20 +1,16 @@
 //@ts-ignore
-import { BigInt, Bytes, Event, require } from "@hyperoracle/zkgraph-lib";
-import { NewCloseFactor } from "./events/newCloseFactor";
-import { NewCollateralFactor } from "./events/newCollateralFactor";
-import { Sync } from "./events/sync";
+import { BigInt, Bytes, Event } from "@hyperoracle/zkgraph-lib";
 import {
   Configs
 } from "./static/tokens";
 
-let closeFactor = BigInt.fromI64(500000000000000000);
-let collateralFactor = BigInt.fromI64(900000000000000000);
-let ONE_FACTOR = BigInt.fromI64(1000000000000000000);
-const NEW_CLOSE_FACTOR_ESIG =
-  "0x3b9670cf975d26958e754b57098eaa2ac914d8d2a31b83257997b9f346110fd9";
-const NEW_COLLATERAL_FACTOR_ESIG =  
-  "0x70483e6592cd5182d45ac970e05bc62cdcc90e9d8ef2c2dbe686cf383bcd7fc5";
-const USDC_PAIR_ADDRESS = "0x0000000000000000000000000000000000000000"
+import {
+  updateConfigWithEvent
+} from "./modules/configUpdater";
+import { updateCloseFactor, updateCollateralFactor } from "./modules/factorUpdater";
+import { calculateTotalValue, calculateTotalPrincipal } from "./modules/assetAggregator";
+
+const configs = new Configs();
 
 /**
  * The idea of Compound Liquidator Automation is to monitor three types of events, 
@@ -27,85 +23,20 @@ const USDC_PAIR_ADDRESS = "0x0000000000000000000000000000000000000000"
 export function handleEvents(events: Event[]): Bytes {
   // step1: If there is a NewCloseFactor or NewCollateralFactor event 
   // override the hardcoded Factor.
-  for (let i = 0; i <= events.length - 1; i++) {
-    if (events[i].esig == Bytes.fromHexString(NEW_CLOSE_FACTOR_ESIG)) {
-      const newCloseFactor = NewCloseFactor.fromEvent(events[i]);
-      closeFactor = newCloseFactor.newCloseFactorMantissa;
-    }
+  let closeFactor = updateCloseFactor(events);
+  let collateralFactor = updateCollateralFactor(events);
+  
+  // step2: Update Balance and Principal by processing Mint Redeem Borrow Repay
+  // Mint make balance +; Redeem make balance -
+  // Borrow make principal +; Repay make Principal -
+  updateConfigWithEvent(configs, events);
 
-    if (events[i].esig == Bytes.fromHexString(NEW_COLLATERAL_FACTOR_ESIG)) {
-      const newCollateralFactor = NewCollateralFactor.fromEvent(events[i]);
-      collateralFactor = newCollateralFactor.newCollateralFactorMantissa;
-    }
-  }
-
-  // step2: for event: if event.address in pair_address which balance not zero
-  // totalValue += balance * price * collateralFactor
-  const configs = new Configs();
-  let hasBalanceEvent:bool = false;
-  let hasPrincipalEvent:bool = false;
-  let totalValue: BigInt = BigInt.zero();
-  // console.log("balance Cares Pair Address:" + configs.balanceCaresPairAddress.toString());
-  // console.log("principal Cares Pair Address:" + configs.principalCaresPairAddress.toString());
-
-  for (let i = 0; i <= events.length - 1; i++) {
-    const event = events[i];
-    const address = Bytes.fromByteArray(event.address).toHexString();
-    console.log(address);
-    if (configs.balanceCaresPairAddress.toString() == address) {
-      const decimals = configs.getDecimalsByAddress(address);
-      const isToken0 = configs.getIsToken0ByAddress(address);
-      const balance = configs.getBalanceByAddress(address);
-      const sync = Sync.fromEvent(event, decimals, isToken0);
-      const value = sync.price.times(collateralFactor.times(balance));
-      totalValue = totalValue.add(value);
-      hasBalanceEvent = true;
-    }
-  }
-
-  // step3: for event: if event.address in pair_address which principal not zero
-  // totalPrincipal += principal * price
-  let totalPrincipal: BigInt = BigInt.zero();
-  for (let i = 0; i <= events.length - 1; i++) {
-    const event = events[i];
-    const address = Bytes.fromByteArray(event.address).toHexString();
-    if (configs.principalCaresPairAddress.toString() == address) {
-      const decimals = configs.getDecimalsByAddress(address);
-      const isToken0 = configs.getIsToken0ByAddress(address);
-      const principal = configs.getPrincipalByAddress(address);
-      const sync = Sync.fromEvent(event, decimals, isToken0);
-      const value = sync.price.times(principal);
-      totalPrincipal = totalPrincipal.add(value);
-      hasPrincipalEvent = true;
-    }
-  }
-
-  if (configs.balanceCaresPairAddress.includes(USDC_PAIR_ADDRESS)) {
-    const balance = configs.getBalanceByAddress(USDC_PAIR_ADDRESS);
-    const value = balance.times(collateralFactor).div(ONE_FACTOR);
-    totalValue = totalValue.add(value);
-    hasBalanceEvent = true;
-  }
-
-  if (configs.principalCaresPairAddress.includes(USDC_PAIR_ADDRESS)) {
-    const principal = configs.getPrincipalByAddress(USDC_PAIR_ADDRESS);
-    totalPrincipal = totalPrincipal.add(principal);
-    hasPrincipalEvent = true;
-  }
-  // console.log(hasBalanceEvent.toString());
-  // console.log(hasPrincipalEvent.toString());
-  // console.log(configs.balanceCaresPairAddress.toString());
-  // console.log(configs.principalCaresPairAddress.toString());
-  // require(hasBalanceEvent);
-  // require(hasPrincipalEvent);
+  // step3: calculate totalValue and totalPrincipal
+  // totalValue += balance * price * COLLATERAL_FACTOR
+  const totalValue = calculateTotalValue(configs, events, collateralFactor);
+  const totalPrincipal = calculateTotalPrincipal(configs, events);
 
   // step4: return totalValue <= totalPrincipal
-  const resultIsValid = hasBalanceEvent && hasPrincipalEvent ? 1 : 0;
-  let resultBytes = Bytes.fromI32(resultIsValid);
   const resultInt = totalValue <= totalPrincipal ? 1 : 0;
-  // console.log(totalValue.toString());
-  // console.log(totalPrincipal.toString());
-
-  resultBytes = Bytes.fromByteArray(resultBytes.concat(Bytes.fromI32(resultInt)));
-  return resultBytes;
+  return Bytes.fromI32(resultInt);
 }
