@@ -233,8 +233,3 @@ dataSources:
           handler: handleEvents
         - event: "NewCollateralFactor(address,uint256,uint256)"
           handler: handleEvents
-dataDestinations:
-  - kind: ethereum/contract
-    network: sepolia
-    destination:
-      address: '0x0000000000000000000000000000000000000000'
